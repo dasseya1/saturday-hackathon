@@ -1,11 +1,12 @@
 // Dependencies
 const bodyParser = require("body-parser");
 const express = require("express");
-const methodOverride = require("method-override");
+//const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const controllers = require("./controller");
+const controllers = require("./controllerBunch");
 
-mongoose.Promise = Promise; // What is this for? I'm not using promises with Mongoose, am I?
+// This was in an example, but I'm not sure we need it - don't think we are using promises with Mongoose
+// mongoose.Promise = Promise;
 
 // Initialize Express
 const app = express();
@@ -24,9 +25,9 @@ app.use(express.static("public"));
 */
 
 if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI)
+  mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect("mongodb://localhost/hackathon")
+  mongoose.connect("mongodb://localhost/hackathon");
 }
 const db = mongoose.connection;
 
